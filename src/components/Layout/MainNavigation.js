@@ -1,4 +1,4 @@
-import { useContext} from 'react';
+import { useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/Auth-Context';
@@ -9,6 +9,12 @@ const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.removeItem("token");
+    }, 10000);
+  }, []);
 
   const logoutHandler = () =>{
     authCtx.logout();
